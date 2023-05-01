@@ -1,30 +1,51 @@
 ---
-title: "Untitled"
+title: "Introducción a la evaluación de impacto"
 output: github_document
 ---
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
+pacman::p_load(tidyverse)
 ```
 
-## GitHub Documents
+# Introducción
 
-This is an R Markdown format used for publishing markdown documents to GitHub. When you click the **Knit** button all R code chunks are run and a markdown file (.md) suitable for publishing to GitHub is generated.
+El desafío de la evaluación de impacto de determinar el efecto causal de una condición de tratamiento respecto a una variable de interés. En definitiva, nos gustaría poder contestar la pregunta ¿en cuánto se beneficia una persona X en recibir el tratamiento respecto al caso en que no recibiera el tratamiento? Si esta pregunta pudiera ser respondida, se contaría con muy buena evidencia del efecto que un tratamiento tiene sobre alguien. Sin embargo, no es posible responder a esta pregunta directamente, ya que una persona no puede ser parte de una condición de tratamiento, y, al mismo tiempo, no ser parte de este. 
 
-## Including Code
+En su lugar, la evaluación de impacto busca estimar el efecto promedio [Average treatment effect (ATE)], a través de la comparación de los resultados del grupo tratado, respecto a un grupo no tratado. Ese grupo no tratado se construye, guiado por el contrafactual. ¿Qué es el contra factual?
 
-You can include R code in the document as follows:
+## Modelo básico:
 
-```{r cars}
-summary(cars)
+Formalmente se describe de la siguiente forma:
+
+$$ ATE =E(Y(1)|D=1) - E(Y(0)|D=1) $$
+Esto es, que el efecto promedio del programa es la diferencia entre el promedio del grupo tratado y el mismo grupo de personas, pero bajo la condición de que no ha sido tratado. A este grupo hipotético se le llama contrafactual. Como esto no es posible de observar el resultado contrafactual, lo que se hace es buscar un grupo alternativo que reemplaza al grupo tratado bajo la condición hipotética de que no ha sido tratado. Este grupo se le llama grupo control, y debe tener la característica de que 
+
+$$ E(Y(0)|D=1) = E(Y(0)|D=0) $$
+
+Si ese es el caso, entonces es posible estimar el efecto promedio del programa, al calcular la diferencia entre la variable resultado del grupo tratado y un grupo control, cuyo promedio en la variable resultado sería igual al del grupo tratado bajo la condición hipotética de que no ha sido tratado (contrafactual).
+
+
+## Condiciones para que se pueda estimar el modelo:
+
+El modelo de regresión ayuda a formalizar los requerimientos y supuestos del modelo. El modelo básico se puede escribir de la siguiente forma:
+
+$$ y_i = \beta_0 + \beta_1D + u_i $$
+Donde D corresponde a la condición de tratamiento. $ D = 0 $ cuando no se particia en la condición de tratamiento y $ D = 1 $ cuando sí se participa. Lo más relevante es que se cumpla con el supuesto de independencia condicional. Esto es que:
+
+$$ E(u_i|D_i) = 0 $$
+Esto es que no existe ninguna asociación entre participar y no participar en la condición de tratamiento y variables observadas (como el género) y no observadas (como las actitudes y creencias). En otra palabras, si el grupo tratado y el no tratado es identico en la distribución de sus características, entonces las diferencias encontradas en la variable de resultado será producto de la intervención.
+
+## Variables de confusión:
+
+Son variables que afectan la probabilidad de ser parte del grupo tratado, como también la variable resultado. Esto, en términos simples, ocurre cuando existen diferencias en los grupos en variables que tienen un efecto final en el resultado. En el ámbito educativo, ocurriría en el caso de que el grupo tratado, por ejemplo, se componga de estudiantes con mejor desempeño que el grupo no tratado. Si la variable resultado es desempeño, al final del año, se observarían diferencias en la variable de resultado incluso en ausencia del tratamiento. Formalmente, la diferencia contendría los siguientes términos:
+
+$$ E(Y(1)|D=1) - E(Y(0)|D=0) = ATE + E(Y_0|D=1) - E(Y_0|D=0) $$ 
+
+La diferencia de promedios, en este caso, no solo indicaría el efecto promedio, sino que también las diferencias existentes previo al tratamiento. Incluso, si no hubiese habido tratamiento, el grupo tratado hubiese tenido un mejor desempeño debido a su composición.
+
+ 
+```{r}
+
 ```
 
-## Including Plots
-
-You can also embed plots, for example:
-
-```{r pressure, echo=FALSE}
-plot(pressure)
-```
-
-Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
