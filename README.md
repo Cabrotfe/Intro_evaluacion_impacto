@@ -23,14 +23,16 @@ factual?
 
 Formalmente se describe de la siguiente forma:
 
-$$ ATE =E(Y(1)|D=1) - E(Y(0)|D=1) $$ Esto es, que el efecto promedio del
-programa es la diferencia entre el promedio del grupo tratado y el mismo
-grupo de personas, pero bajo la condición de que no ha sido tratado. A
-este grupo hipotético se le llama contrafactual. Como esto no es posible
-de observar el resultado contrafactual, lo que se hace es buscar un
-grupo alternativo que reemplaza al grupo tratado bajo la condición
-hipotética de que no ha sido tratado. Este grupo se le llama grupo
-control, y debe tener la característica de que
+$$ ATE = E(Y(1)|D=1) - E(Y(0)|D=1) $$
+
+Esto es, que el efecto promedio del programa es la diferencia entre el
+promedio del grupo tratado y el mismo grupo de personas, pero bajo la
+condición de que no ha sido tratado. A este grupo hipotético se le llama
+contrafactual. Como esto no es posible de observar el resultado
+contrafactual, lo que se hace es buscar un grupo alternativo que
+reemplaza al grupo tratado bajo la condición hipotética de que no ha
+sido tratado. Este grupo se le llama grupo control, y debe tener la
+característica de que
 
 $$ E(Y(0)|D=1) = E(Y(0)|D=0) $$
 
