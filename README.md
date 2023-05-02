@@ -46,16 +46,18 @@ El modelo de regresión ayuda a formalizar los requerimientos y supuestos
 del modelo. El modelo básico se puede escribir de la siguiente forma:
 
 $$ y_i = \beta_0 + \beta_1D + u_i $$ Donde D corresponde a la condición
-de tratamiento. \$ D = 0 \$ cuando no se particia en la condición de
-tratamiento y \$ D = 1 \$ cuando sí se participa. Lo más relevante es
-que se cumpla con el supuesto de independencia condicional. Esto es que:
+de tratamiento. D = 0 cuando no se particia en la condición de
+tratamiento y D = 1 cuando sí se participa. Lo más relevante es que se
+cumpla con el supuesto de independencia condicional. Esto es que:
 
-$$ E(u_i|D_i) = 0 $$ Esto es que no existe ninguna asociación entre
-participar y no participar en la condición de tratamiento y variables
-observadas (como el género) y no observadas (como las actitudes y
-creencias). En otra palabras, si el grupo tratado y el no tratado es
-identico en la distribución de sus características, entonces las
-diferencias encontradas en la variable de resultado será producto de la
+$$ E(u_i|D_i) = 0 $$
+
+Esto es que no existe ninguna asociación entre participar y no
+participar en la condición de tratamiento y variables observadas (como
+el género) y no observadas (como las actitudes y creencias). En otra
+palabras, si el grupo tratado y el no tratado es identico en la
+distribución de sus características, entonces las diferencias
+encontradas en la variable de resultado será producto de la
 intervención.
 
 ## Variables de confusión:
@@ -77,7 +79,7 @@ promedio, sino que también las diferencias existentes previo al
 tratamiento. Incluso, si no hubiese habido tratamiento, el grupo tratado
 hubiese tenido un mejor desempeño debido a su composición.
 
-En este caso el estimador de tratamiento \$ \_1 \$ es sesgado. Es decir,
+En este caso el estimador de tratamiento $\beta_1$ es sesgado. Es decir,
 no converge al efecto real, sino que a otro valor, que puede ser mayor o
 menor dependiendo del tipo de variables de confusión que existan y en
 qué grupo se concentren.

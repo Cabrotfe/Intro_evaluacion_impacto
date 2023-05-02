@@ -18,8 +18,10 @@ En su lugar, la evaluación de impacto busca estimar el efecto promedio [Average
 
 Formalmente se describe de la siguiente forma:
 
+
 $$ ATE =E(Y(1)|D=1) - E(Y(0)|D=1) $$
-Esto es, que el efecto promedio del programa es la diferencia entre el promedio del grupo tratado y el mismo grupo de personas, pero bajo la condición de que no ha sido tratado. A este grupo hipotético se le llama contrafactual. Como esto no es posible de observar el resultado contrafactual, lo que se hace es buscar un grupo alternativo que reemplaza al grupo tratado bajo la condición hipotética de que no ha sido tratado. Este grupo se le llama grupo control, y debe tener la característica de que 
+Esto es, que el efecto promedio del programa es la diferencia entre el promedio del grupo tratado y el mismo grupo de personas, pero bajo la condición de que no ha sido tratado. A este grupo hipotético se le llama contrafactual. Como esto no es posible de observar el resultado contrafactual, lo que se hace es buscar un grupo alternativo que reemplaza al grupo tratado bajo la condición hipotética de que no ha sido tratado. Este grupo se le llama grupo control, y debe tener la característica de que
+
 
 $$ E(Y(0)|D=1) = E(Y(0)|D=0) $$
 
@@ -30,21 +32,29 @@ Si ese es el caso, entonces es posible estimar el efecto promedio del programa, 
 
 El modelo de regresión ayuda a formalizar los requerimientos y supuestos del modelo. El modelo básico se puede escribir de la siguiente forma:
 
+
 $$ y_i = \beta_0 + \beta_1D + u_i $$
-Donde D corresponde a la condición de tratamiento. $ D = 0 $ cuando no se particia en la condición de tratamiento y $ D = 1 $ cuando sí se participa. Lo más relevante es que se cumpla con el supuesto de independencia condicional. Esto es que:
+Donde D corresponde a la condición de tratamiento.  D = 0  cuando no se particia en la condición de tratamiento y D = 1 cuando sí se participa. Lo más relevante es que se cumpla con el supuesto de independencia condicional. Esto es que:
+
 
 $$ E(u_i|D_i) = 0 $$
+
 Esto es que no existe ninguna asociación entre participar y no participar en la condición de tratamiento y variables observadas (como el género) y no observadas (como las actitudes y creencias). En otra palabras, si el grupo tratado y el no tratado es identico en la distribución de sus características, entonces las diferencias encontradas en la variable de resultado será producto de la intervención.
+
 
 ## Variables de confusión:
 
+
 Son variables que afectan la probabilidad de ser parte del grupo tratado, como también la variable resultado. Esto, en términos simples, ocurre cuando existen diferencias en los grupos en variables que tienen un efecto final en el resultado. En el ámbito educativo, ocurriría en el caso de que el grupo tratado, por ejemplo, se componga de estudiantes con mejor desempeño que el grupo no tratado. Si la variable resultado es desempeño, al final del año, se observarían diferencias en la variable de resultado incluso en ausencia del tratamiento. Formalmente, la diferencia contendría los siguientes términos:
 
-$$ E(Y(1)|D=1) - E(Y(0)|D=0) = ATE + E(Y_0|D=1) - E(Y_0|D=0) $$ 
+
+$$ E(Y(1)|D=1) - E(Y(0)|D=0) = ATE + E(Y_0|D=1) - E(Y_0|D=0) $$
+
 
 La diferencia de promedios, en este caso, no solo indicaría el efecto promedio, sino que también las diferencias existentes previo al tratamiento. Incluso, si no hubiese habido tratamiento, el grupo tratado hubiese tenido un mejor desempeño debido a su composición.
 
-En este caso el estimador de tratamiento $ \beta_1 $ es sesgado. Es decir, no converge al efecto real, sino que a otro valor, que puede ser mayor o menor dependiendo del tipo de variables de confusión que existan y en qué grupo se concentren.
+
+En este caso el estimador de tratamiento $\beta_1$ es sesgado. Es decir, no converge al efecto real, sino que a otro valor, que puede ser mayor o menor dependiendo del tipo de variables de confusión que existan y en qué grupo se concentren.
 
 
 # Caso de ejemplo:
