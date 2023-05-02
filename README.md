@@ -45,10 +45,12 @@ ha sido tratado (contrafactual).
 El modelo de regresión ayuda a formalizar los requerimientos y supuestos
 del modelo. El modelo básico se puede escribir de la siguiente forma:
 
-$$ y_i = \beta_0 + \beta_1D + u_i $$ Donde D corresponde a la condición
-de tratamiento. D = 0 cuando no se particia en la condición de
-tratamiento y D = 1 cuando sí se participa. Lo más relevante es que se
-cumpla con el supuesto de independencia condicional. Esto es que:
+$$ y_i = \beta_0 + \beta_1D + u_i $$
+
+Donde D corresponde a la condición de tratamiento. D = 0 cuando no se
+particia en la condición de tratamiento y D = 1 cuando sí se participa.
+Lo más relevante es que se cumpla con el supuesto de independencia
+condicional. Esto es que:
 
 $$ E(u_i|D_i) = 0 $$
 
